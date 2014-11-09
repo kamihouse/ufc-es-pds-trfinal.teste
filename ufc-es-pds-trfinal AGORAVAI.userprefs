@@ -1,0 +1,13 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Código Fonte\ControladorJogo.cs">
+    <Files>
+      <File FileName="Assets\Código Fonte\View\TabuleiroGUI.cs" Line="72" Column="62" />
+      <File FileName="Assets\Código Fonte\ControladorJogo.cs" Line="134" Column="22" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>
