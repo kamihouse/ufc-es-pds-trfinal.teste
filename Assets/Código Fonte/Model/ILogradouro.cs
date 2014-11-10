@@ -4,15 +4,9 @@
 public interface ILogradouro
 {
 		/// <summary>
-		/// É executado quando o jogador para em um logradouro.
+		/// É executado quando o jogador entra em um logradouro.
 		/// </summary>
 		/// <param name="jogador">Jogador.</param>
-		bool acao (Jogador jogador);
-		
-
-		/// <summary>
-		/// Retorna a posicao (índice) do logradouro em questão.
-		/// </summary>
-		/// <returns>Indice.</returns>
-		int getPosicaoIndice ();
+		/// <param name="outroJogador">Outro jogador.</param>
+		bool acao (Jogador jogador, Jogador outroJogador);
 }

@@ -6,16 +6,16 @@ using System.Collections.Generic;
 /// </summary>
 public class TabuleiroGUI : MonoBehaviour
 {
-		//Atribui os game objects ja engine a variaveis do codigo.
-
 		public GameObject playerVermelho;
 		public GameObject playerAzul;
 		public GameObject casaPlayerVermelo;
 		public GameObject casaPlayerAzul;
+
 		private GameObject casaComprada;
-		// Lista de posiçoes de na tela onde se encontra cada casa do tabuleiro. 
+
 		private List<Vector3> posicoes = new List<Vector3> ();
 		
+
 		// Inicializa a lista de posiçoes. 
 		void Start ()
 		{
@@ -42,29 +42,44 @@ public class TabuleiroGUI : MonoBehaviour
 						x -= 0.79f;
 				}
 				y -= 0.79f;
+
 				for (int i=0; i<9; i++) {
 						posicoes.Add (new Vector3 (x, y, z));
 						y -= 0.79f;
 				}
 		
 		}
-	
+
+
 		// Update is called once per frame
 		void Update ()
 		{
 
 		}
-		// Atualiza a posiçao na tela dos GameObject que representam os jogadores.
+
+
+		/// <summary>
+		/// Atualiza a posiçao na tela dos GameObject que representam os jogadores.
+		/// </summary>
+		/// <param name="idJogadorDaVez">Identifier jogador da vez.</param>
+		/// <param name="posicaoJogador">Posicao jogador.</param>
 		public void percorerTabuleiro (int idJogadorDaVez, int posicaoJogador)
 		{
 				if (idJogadorDaVez == 0) {
 						playerVermelho.transform.position = posicoes [posicaoJogador];
-				} else
-			if (idJogadorDaVez == 1) {
-						playerAzul.transform.position = posicoes [posicaoJogador];
+				} else {
+						if (idJogadorDaVez == 1) {
+								playerAzul.transform.position = posicoes [posicaoJogador];
+						}
 				}
 		}
-		// Adiciona a cada casa o Gameobject que representa que a mesma foi comprada por um jogador
+
+
+		/// <summary>
+		/// Adiciona a cada casa o Gameobject que representa que a mesma foi comprada por um jogador
+		/// </summary>
+		/// <param name="idJogadorDaVez">Identifier jogador da vez.</param>
+		/// <param name="posicaoJogadorC">Posicao jogador c.</param>
 		public void comprarLogradouro (int idJogadorDaVez, int posicaoJogadorC)
 		{
 				if (idJogadorDaVez == 0) {
@@ -76,11 +91,5 @@ public class TabuleiroGUI : MonoBehaviour
 						casaComprada.transform.position = posicoes [posicaoJogadorC];
 						casaComprada.transform.parent = transform;
 				}
-			
 		}
-	
 }
-
-
-
-

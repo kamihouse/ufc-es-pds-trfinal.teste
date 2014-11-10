@@ -9,9 +9,9 @@ public class Jogador
 		private int posicao;
 
 		/// <summary>
-		/// Armazena o <see cref="Jogador"/> atual.
+		/// Armazena o #ID do <see cref="Jogador"/> atual.
 		/// </summary>
-		private int JogadorAtual;
+		private int idJogador;
 
 		/// <summary>
 		/// Armazena o Saldo atual do <see cref="Jogador"/>.
@@ -26,10 +26,9 @@ public class Jogador
 		/// <param name="saldo">Saldo.</param>
 		public Jogador (int idJogador, int saldo)
 		{
-				this.posicao = -1;
-				this.JogadorAtual = idJogador;
-				this.saldo = saldo;
-	
+				this.posicao	= -1;
+				this.idJogador	= idJogador;
+				this.saldo		= saldo;
 		}
 
 
@@ -44,12 +43,12 @@ public class Jogador
 
 		
 		/// <summary>
-		/// Recupera o <see cref="Jogador"/> atual da partida.
+		/// Recupera o ID <see cref="Jogador"/> atual da partida.
 		/// </summary>
-		/// <returns>Jogador Atual.</returns>
-		public int getJogadorAtual ()
+		/// <returns>The identifier jogador.</returns>
+		public int getIdJogador ()
 		{
-				return this.JogadorAtual;
+				return this.idJogador;
 		}
 
 
@@ -81,18 +80,14 @@ public class Jogador
 		{
 				this.saldo -= valor;
 		}
-		
 
+		
 		/// <summary>
-		/// Seta o saldo do <see cref="Jogador"/>.
+		/// Método que credita valor no atributo saldo.
 		/// </summary>
-		/// <param name="valor">int Valor.</param>
-		public void setSaldo (int valor)
+		/// <param name="valor">Valor.</param>
+		public void creditarValor(int valor)
 		{
-				if(valor <= 0){
-					this.saldo = 0;
-				} else {
-					this.saldo = valor;
-				}
+				this.saldo += valor;
 		}
 }

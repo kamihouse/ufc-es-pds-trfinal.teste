@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using UnityEngine;
+using System.Collections.Generic;
 
 /// <summary>
 /// Controlador (Máquina de Estados) que alterna estre os jogadores presentes em uma partida.
@@ -12,6 +13,11 @@ public class JogadorDaVez
 		/// Iniciamos o jogo com o Jogador Vermelho (pela disposição da interface).
 		/// </remarks>
 		private int jogadorDaVez = (int)Constantes.Jogador.Vermelho;
+
+		/// <summary>
+		/// Identifica o próximo Jogador.
+		/// </summary>
+		private int outroJogador = (int)Constantes.Jogador.Azul;
 
 		/// <summary>
 		/// Coleção com os jogadores definidos para iniciar uma partida.
@@ -31,7 +37,7 @@ public class JogadorDaVez
 
 
 		/// <summary>
-		/// Recupera o objeto Jogador da vez na partida iniciada.
+		/// Retorna o objeto Jogador da vez na partida iniciada.
 		/// </summary>
 		/// <returns>Jogador da vez.</returns>
 		public Jogador getJogadorDaVez ()
@@ -41,15 +47,29 @@ public class JogadorDaVez
 
 
 		/// <summary>
+		/// Retorna o próximo jogador (Jogador que não é o da vez atual da partida).
+		/// </summary>
+		/// <returns>Ooutro jogador.</returns>
+		public Jogador getOutroJogador()
+		{
+				return jogador[outroJogador];
+		}
+
+
+		/// <summary>
 		/// Método que verifica o jogador atual da partida e informa qual será o próximo a jogar.
 		/// </summary>
 		public void proximoJogador ()
 		{
-				if (this.jogadorDaVez == (int)Constantes.Jogador.Vermelho)
+				if (this.jogadorDaVez == (int)Constantes.Jogador.Vermelho){
 						// Passamos a vez para o Jogador Azul
 						jogadorDaVez = (int)Constantes.Jogador.Azul;
-				else
+						outroJogador = (int)Constantes.Jogador.Vermelho;
+						
+				} else {
 						// Mantemos a vez do Jogador Vermelho
 						jogadorDaVez = (int)Constantes.Jogador.Vermelho;
+						outroJogador = (int)Constantes.Jogador.Azul;
+				}
 		}
 }

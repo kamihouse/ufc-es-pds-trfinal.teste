@@ -56,10 +56,10 @@ public class DadoGUI : MonoBehaviour
 		void OnGUI ()
 		{
 				if (this.exibeDados) {
-						this.valorDado1 = GUI.TextField (new Rect (812, 265, 120, 20), this.valorDado1, 25);
-						this.valorDado2 = GUI.TextField (new Rect (812, 295, 120, 20), this.valorDado2, 25);
+						this.valorDado1 = GUI.TextField (new Rect (1071, 268, 120, 20), this.valorDado1, 25);
+						this.valorDado2 = GUI.TextField (new Rect (1071, 298, 120, 20), this.valorDado2, 25);
 				
-						if (GUI.Button (new Rect (833, 323, 80, 30), "Jogar Dados")) {
+						if (GUI.Button (new Rect (1076, 328, 110, 30), "Jogar Dados")) {
 								EsconderDados ();
 								jogouDado = true;
 						}
@@ -103,7 +103,11 @@ public class DadoGUI : MonoBehaviour
 		{
 				int vDado1 = Convert.ToInt32 (this.valorDado1);
 				int vDado2 = Convert.ToInt32 (this.valorDado2);
-		
+				
+				if((vDado1+vDado2) <= 0){
+					return 1;
+				}
+
 				return vDado1 + vDado2;
 		}
 

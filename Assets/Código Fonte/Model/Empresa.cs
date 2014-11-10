@@ -1,13 +1,8 @@
-﻿/// <summary>
+/// <summary>
 /// Model que controla as açoes que podes ser feitas no jogo com entidade do tipo <see cref="Empresa"/>.
 /// </summary>
 public class Empresa : ILogradouro
 {
-		/// <summary>
-		/// Armazena a posiçao (índice) da <see cref="Empresa"/> no tabuleiro.
-		/// </summary>
-		private int posicaoNoTabuleiro;
-
 		/// <summary>
 		/// Armazena o identiicador do jogador que e dono da entidade <see cref="Empresa"/>.
 		/// </summary>
@@ -27,11 +22,9 @@ public class Empresa : ILogradouro
 		/// <summary>
 		/// Construtor. Recebe o indice e preço que representa a posiçao da <see cref="Empresa"/> no tabuleiro.
 		/// </summary>
-		/// <param name="indice">Indice.</param>
 		/// <param name="preco">Preco.</param>
-		public Empresa (int posicaoIndice, int preco)
+		public Empresa (int preco)
 		{
-				this.posicaoNoTabuleiro	= posicaoIndice;
 				this.jogadorDono		= (int)Constantes.Jogador.Nenhum;
 				this.preco				= preco;
 				double calculaTaxa		= preco * 0.2; 
@@ -47,25 +40,15 @@ public class Empresa : ILogradouro
 		/// É executado quando o <see cref="Jogador"/> para em uma casa.
 		/// </remarks>
 		/// <param name="j">Jogador.</param>
-		public bool acao (Jogador jogador)
+		public bool acao (Jogador jogador, Jogador outroJogador)
 		{
-				if (jogadorDono == (int)Constantes.Jogador.Nenhum) {
+				if (this.jogadorDono == (int)Constantes.Jogador.Nenhum) {
 						return true;
-				} else if (jogadorDono != jogador.getJogadorAtual ()) {
-						cobrarTaxa (jogador);
+				} else if (this.jogadorDono != jogador.getIdJogador ()) {
+						cobrarTaxa (jogador,outroJogador);
 						return false;
 				}
 				return false;
-		}
-	
-
-		/// <summary>
-		/// Retorna o índice (posição) do logradouro em que se encontra a empresa no tabuleir.
-		/// </summary>
-		/// <returns>indice.</returns>
-		public int getPosicaoIndice ()
-		{
-				return this.posicaoNoTabuleiro;
 		}
 
 
@@ -88,19 +71,25 @@ public class Empresa : ILogradouro
 		public void comprar (Jogador jogador, bool decisaoDoJogador)
 		{
 				if (decisaoDoJogador) {
-						this.jogadorDono = jogador.getJogadorAtual ();
+						this.jogadorDono = jogador.getIdJogador ();
 						jogador.cobrarValor (this.preco);
 				}
 		}
 
 
 		/// <summary>
-		/// Retira do saldo do jogador (cobrando taxa) com o valor da taxa da empresa em que o mesmo está localizado. 
+		/// Retira do saldo do jogador (cobrando taxa) com o valor da taxa da empresa em que o mesmo está localizado.
+		/// Sempre debitamos e depois creditamos.
 		/// </summary>
-		/// <param name="j">jogador.</param>
-		public void cobrarTaxa (Jogador jogador)
+		/// <param name="jogadorDebita">Jogador debita.</param>
+		/// <param name="jogadorCredita">Jogador credita.</param>
+		public void cobrarTaxa (Jogador jogadorDebita, Jogador jogadorCredita)
 		{
-				jogador.cobrarValor (taxa);
+				// Debita do Jogador
+				jogadorDebita.cobrarValor (this.taxa);
+				
+				// Credita para Jogador
+				jogadorCredita.creditarValor(this.taxa);
 		}
 
 
